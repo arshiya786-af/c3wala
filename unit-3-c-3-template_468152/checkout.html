@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+  <style>
+    #movie{
+    align-items: center;
+      width:300px;
+      margin-top: 40px;
+    }
+  </style>
+  <body>
+    <div id="navbar">
+      <h1>Checkout | Cost: 100/seat</h1>
+      <h1 id="wallet"></h1>
+      <!-- Display the wallet amount here inside h1 tag with id as "wallet". Note only amount, no extra text. Like 500 not Rs 500 -->
+    </div><center>
+    <div id="user-detail">
+      <input type="text" id="user_name" placeholder="Enter Name">
+      <input type="Number" id="number_of_seats" >
+      <button id="confirm"onclick="confirm()">Confirm</button>
+      <!-- input field to accept user name with id as "user_name"  -->
+      <!-- input field to accept number of seats with id as "number_of_seats"  -->
+      <!-- A submit button to confirm booking with id as "confirm"  -->
+   
+    </div>
+
+    <div id="movie">
+      <!-- Append the selected movie for booking here -->
+      <!-- movie should have title and image  -->
+      <!-- It should be the same movie you selected for booking  -->
+    </center>
+    </div>
+  </body>
+</html>
+<script>
+  let navbar= document.getElementById("navbar")
+  let wrr=JSON.parse(localStorage.getItem("amount"));
+  let walletdo=document.getElementById("wallet")
+  walletdo.append(wrr[wrr.length-1])
+  var totalwallet=wrr[wrr.length-1]
+  navbar.append(walletdo)
+  let total=0;
+  function getSeat(){
+    let noOfSeat=document.getElementById("number_of_seats").value
+    total=100*noOfSeat
+    if(totalwallet<total)
+    {
+      alert("InSufficient Balance!")
+    }
+  }
+
+    function chalo(){
+  let wrr=JSON.parse(localStorage.getItem("amount"))
+  let value=chalo[chalo.length-1]
+ wrr.pop()
+  value-total
+  let lastvalue=value-total;
+ wrr.push(lastvalue)
+  localStroage.setItem("amount",JSON.stringify(chalo))
+  window.location.reload()
+  Sucess()
+}
+function sucess()
+{
+  alert("Booking Sucessfull!")
+}
+
+  //  var amount_data=document.getElementById("wallet")
+  //  wallet.append(wrr)
+
+  let arr=JSON.parse(localStorage.getItem("movie"))
+  var movie_data=document.getElementById("movie")
+  arr.map(function(el)
+  {
+    let div=document.createElement("div")
+        div.style.border="2px solid black";
+        // div.style.height="300px"
+        let p=document.createElement("h4");
+        p.innerText=el.Title;
+        let Poster=document.createElement("img")
+        Poster.src=el.Poster;
+        Poster.style.height="260px"
+        Poster.style.width="298px"
+        div.append(p,Poster)
+        movie.append(div)
+  })
+</script>
